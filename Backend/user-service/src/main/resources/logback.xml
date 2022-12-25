@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Setting properties from Spring -->
+	<springProperty scope="context" name="APPNAME" source="spring.application.name"/>
+
+	<!-- Setting "normal" properties" -->
+	<property name="LOGDIR" value="./logs/dhmoney"/>
+
+	<!-- Console Appender -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				%green(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- File Appender (with rolling policy) -->
+	<appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGDIR}/${APPNAME}/dh-spring-elk.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily and when the file reaches 10 MegaBytes -->
+			<fileNamePattern>${LOGDIR}/${APPNAME}/archived/dhmoney-logger-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- LOG everything at INFO level -->
+	<root level="info">
+		<appender-ref ref="RollingFile"/>
+		<appender-ref ref="Console"/>
+	</root>
+
+	<!-- LOG "com.dh.core.*" at TRACE level -->
+	<logger name="com.dh.core" level="trace" additivity="false">
+		<appender-ref ref="RollingFile"/>
+		<appender-ref ref="Console"/>
+	</logger>
+
+</configuration>

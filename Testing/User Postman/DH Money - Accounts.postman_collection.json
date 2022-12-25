@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "5bfec197-a968-4b81-8663-5596afc11f7a",
+		"name": "DH Money - Accounts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16607330"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Alias",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxakFWVmlWa2pYWnpvTFZnMW1WTU1DOUF6b3ZMVXBOVDNyMmZNaFBMX0ZrIn0.eyJleHAiOjE2NjgxMjEyMjYsImlhdCI6MTY2ODExNzYyNiwianRpIjoiZmMwMGNmNWUtZGQxOC00YmY5LWI0ZjktYjYzMGQ2NzdjMjMxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL3JlYWxtcy9kaG1vbmV5IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6Ijk1ODkwMDJjLWNjMTgtNDc4OS1hZDI0LTllYmUzMGFhOGNkMSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXItaW50ZXJubyIsInNlc3Npb25fc3RhdGUiOiJjNWZmZGYyZS1iNmRiLTRjMTEtOGE0MS02MmIwY2ZiMzMzOTEiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kaG1vbmV5IiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJjNWZmZGYyZS1iNmRiLTRjMTEtOGE0MS02MmIwY2ZiMzMzOTEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2FybG9zX3JhbWlyZXpAZ21haWwuY29tIiwiZW1haWwiOiJjYXJsb3NfcmFtaXJlekBnbWFpbC5jb20ifQ.qq5sWXYtuGrV4bmczSbWLLVWVsFQ7w6MNW0ilqaAdVrqPcsASoPzvjkZEG5EJDUIRHLJlKVtOvKesZBxqljOKzmqdluaanBeouIVOEQ_H9wdChb9GqNtwvzYo6afNpZZBU-78tMjX_gdgPvUG-6vnMbWjvC7tRNLBwt9ZE0oT61wLA7tYzlOumlmkl6I1twGm7h49xVzagQddvgdRgLkvp9jWjGVoet4bo6VH-vx3j_5B-0PeAmSup84o2T_i3j0p4Q1GCzvonhKrd-U1V18RN_NrFt_4nv5kCA52YeDU_B7vVKYDDLg4NhIOHGWGP6OZRP693qeFMa8Xkuvvr7qUA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"alias\": \"flor.hoy.pie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Latest Transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100.00,\r\n    \"dated\": \"2022-10-21\",\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"destination\": \"1903919143693433487767\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/accounts/1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 10.00,\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Debit\",\r\n    \"destination\": \"2656451961335628043989\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/accounts/1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Card by ID by Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/accounts/1/cards/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"cards",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Cards by Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/accounts/1/cards",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cardNumber\": \"3333333344444444\",\n    \"fullName\": \"Carlos Ramírez\",\n    \"expirationDate\": \"12/28\",\n    \"securityCode\": 123\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/accounts/1/cards",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Card by ID by Account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/accounts/1/cards/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"accounts",
+						"1",
+						"cards",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

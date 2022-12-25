@@ -1,0 +1,591 @@
+{
+	"info": {
+		"_postman_id": "82635c08-dd72-4c07-ab9e-1c52d8efb5d1",
+		"name": "DH Money - Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16607330"
+	},
+	"item": [
+		{
+			"name": "User by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El método es de tipo GET\", () => {\r",
+							"    pm.expect(request.method).eql(\"GET\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La URL de la petición es la esperada\", () => {\r",
+							"    pm.expect(request.url).to.have.string(\"http://localhost:8084/users/\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la respuesta y es igual a 'application/json'\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta menor a 200 ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status igual a '200 OK'\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body de la petición vacío\", function () {\r",
+							"    pm.expect(request.data).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es correcta, tiene body y es un JSON\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");  // Es otra forma de chequear las keys del JSON\r",
+							"});\r",
+							"\r",
+							"const dataRes = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Body de la respuesta no vacío\", function () {\r",
+							"    pm.expect(dataRes).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"/*pm.test(\"Respuesta con los atributos esperados\", function () {\r",
+							"    pm.expect(dataRes).to.have.all.keys([\"id\", \"firstname\", \"lastname\", \"dni\", \"email\", \"phone\", \"bankAccount\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tipos de datos de la respuesta\", () => {\r",
+							"    pm.expect(dataRes).to.be.an(\"object\");\r",
+							"    pm.expect(dataRes.id).to.be.a(\"number\");\r",
+							"    pm.expect(dataRes.firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.phone).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.bankAccount).to.be.a(\"object\");\r",
+							"});*/\r",
+							"\r",
+							"pm.test(\"El ID obtenido es un número válido mayor a 0\", function () {\r",
+							"    pm.expect(dataRes.id).to.not.be.NaN;\r",
+							"    pm.expect(dataRes.id).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El ID recibido es igual al enviado\", function () {\r",
+							"    const idEnviado = parseInt(request.url.split(\"/\").at(-1));\r",
+							"    pm.expect(dataRes.id).to.eql(idEnviado);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El método es de tipo GET\", () => {\r",
+							"    pm.expect(request.method).eql(\"GET\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La URL de la petición es la esperada\", () => {\r",
+							"    pm.expect(request.url).eql(\"http://localhost:8084/users/\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la respuesta y es igual a 'application/json'\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta menor a 200 ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status igual a '200 OK'\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body de la petición vacío\", function () {\r",
+							"    pm.expect(request.data).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es correcta, tiene body y es un JSON\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");  // Es otra forma de chequear las keys del JSON\r",
+							"});\r",
+							"\r",
+							"const dataRes = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Body de la respuesta no vacío\", function () {\r",
+							"    pm.expect(dataRes).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Respuesta es un array\", function () {\r",
+							"    pm.expect(dataRes).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Array con al menos 1 elemento\", function () {\r",
+							"    pm.expect(dataRes).to.have.lengthOf.at.least(1);\r",
+							"});\r",
+							"\r",
+							"/*pm.test(\"Elementos del array con los atributos esperados\", function () {\r",
+							"    for(let i = 0; i < dataRes.length; i++) {\r",
+							"        pm.expect(dataRes[i]).to.have.all.keys([\"id\", \"firstname\", \"lastname\", \"dni\", \"email\", \"phone\", \"bankAccount\"]);\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tipos de datos de los elementos del array\", () => {\r",
+							"    for(let i = 0; i < dataRes.length; i++) {\r",
+							"    pm.expect(dataRes).to.be.an(\"object\");\r",
+							"    pm.expect(dataRes[i].id).to.be.a(\"number\");\r",
+							"    pm.expect(dataRes[i].firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes[i].lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes[i].dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes[i].email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes[i].phone).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes[i].bankAccount).to.be.a(\"object\");\r",
+							"    }\r",
+							"});*/\r",
+							"\r",
+							"pm.test(\"Los ID's obtenidos son números válidos mayores a 0\", function () {\r",
+							"    for(let i = 0; i < dataRes.length; i++) {\r",
+							"        pm.expect(dataRes[i].id).to.not.be.NaN;\r",
+							"        pm.expect(dataRes[i].id).to.be.above(0);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*pm.test(\"El método es de tipo POST\", () => {\r",
+							"    pm.expect(request.method).eql(\"POST\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La URL de la petición es la esperada\", () => {\r",
+							"    pm.expect(request.url).eql(\"http://localhost:8084/users/\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la petición y es igual a 'application/json'\", () => {\r",
+							"    pm.expect(request.headers).to.have.property(\"content-type\");\r",
+							"    pm.expect(request.headers['content-type']).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la respuesta y es igual a 'application/json'\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});*/\r",
+							"\r",
+							"/*pm.test(\"Tiempo de respuesta menor a 200 ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});*/\r",
+							"\r",
+							"/*pm.test(\"Status igual a '201 Created'\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"const dataReq = JSON.parse(request.data);\r",
+							"\r",
+							"pm.test(\"Petición con los atributos esperados\", function () {\r",
+							"    pm.expect(dataReq).to.not.have.any.keys(\"id\");\r",
+							"    pm.expect(dataReq).to.have.all.keys([\"firstname\", \"lastname\", \"dni\", \"email\", \"phone\", \"password\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tipos de datos de la petición\", () => {\r",
+							"    pm.expect(dataReq).to.be.an(\"object\");\r",
+							"    pm.expect(dataReq).to.not.have.property(\"id\");\r",
+							"    pm.expect(dataRes.firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.phone).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.password).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es correcta, tiene body y es un JSON\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");  // Es otra forma de chequear las keys del JSON\r",
+							"});\r",
+							"\r",
+							"const dataRes = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Body de la respuesta no vacío\", function () {\r",
+							"    pm.expect(dataRes).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Respuesta con los atributos esperados\", function () {\r",
+							"    pm.expect(dataRes).to.have.all.keys([\"id\", \"firstname\", \"lastname\", \"dni\", \"email\", \"phone\", \"bankAccount\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tipos de datos de la respuesta\", () => {\r",
+							"    pm.expect(dataRes).to.be.an(\"object\");\r",
+							"    pm.expect(dataRes.id).to.be.a(\"number\");\r",
+							"    pm.expect(dataRes.firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.phone).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.bankAccount).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El ID obtenido es un número válido mayor a 0\", function () {\r",
+							"    pm.expect(dataRes.id).to.not.be.NaN;\r",
+							"    pm.expect(dataRes.id).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Los datos recibidos son iguales a los enviados\", function () {\r",
+							"    pm.expect(dataReq.nombre).to.eql(dataRes.nombre);\r",
+							"    pm.expect(dataReq.pais).to.eql(dataRes.pais);\r",
+							"});*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"firstname\": \"Carlos\",\r\n        \"lastname\": \"Ramírez\",\r\n        \"dni\": \"31456998\",\r\n        \"email\": \"carlos_ramirez@gmail.com\",\r\n        \"phone\": \"43569876\",\r\n        \"password\": \"GreatPassword1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*pm.test(\"El método es de tipo PUT\", () => {\r",
+							"    pm.expect(request.method).eql(\"PUT\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La URL de la petición es la esperada\", () => {\r",
+							"    pm.expect(request.url).eql(\"http://localhost:8084/users/\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la petición y es igual a 'application/json'\", () => {\r",
+							"    pm.expect(request.headers).to.have.property(\"content-type\");\r",
+							"    pm.expect(request.headers['content-type']).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe la propiedad Content-Type en el encabezado de la respuesta y es igual a 'application/json'\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});*/\r",
+							"\r",
+							"// no va\r",
+							"/*pm.test(\"Tiempo de respuesta menor a 200 ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});*/\r",
+							"\r",
+							"/*pm.test(\"Status igual a '200 OK'\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"const dataReq = JSON.parse(request.data);*/\r",
+							"\r",
+							"// no va\r",
+							"/*pm.test(\"Petición con los atributos esperados\", function () {\r",
+							"    pm.expect(dataReq).to.have.all.keys([\"firstname\", \"lastname\", \"dni\", \"email\", \"phone\", \"password\"]);\r",
+							"});*/\r",
+							"\r",
+							"// no va\r",
+							"/*pm.test(\"Tipos de datos de la petición\", () => {\r",
+							"    pm.expect(dataReq).to.be.an(\"object\");\r",
+							"    pm.expect(dataRes.firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.phone).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.password).to.be.a(\"string\");\r",
+							"});*/\r",
+							"\r",
+							"/*pm.test(\"La respuesta es correcta, tiene body y es un JSON\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");  // Es otra forma de chequear las keys del JSON\r",
+							"});\r",
+							"\r",
+							"const dataRes = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Body de la respuesta no vacío\", function () {\r",
+							"    pm.expect(dataRes).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Respuesta con los atributos esperados\", function () {\r",
+							"    pm.expect(dataRes).to.have.all.keys([\"id\", \"firstname\", \"lastname\", \"dni\", \"email\", \"phone\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tipos de datos de la respuesta\", () => {\r",
+							"    pm.expect(dataRes).to.be.an(\"object\");\r",
+							"    pm.expect(dataRes.id).to.be.a(\"number\");\r",
+							"    pm.expect(dataRes.firstname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.lastname).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.dni).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.email).to.be.a(\"string\");\r",
+							"    pm.expect(dataRes.phone).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El ID obtenido es un número válido mayor a 0 e igual al enviado\", function () {\r",
+							"    pm.expect(dataRes.id).to.not.be.NaN;\r",
+							"    pm.expect(dataRes.id).to.be.above(0);\r",
+							"    pm.expect(dataRes.id).to.eql(dataReq.id);\r",
+							"});*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Juan\",\r\n    \"dni\": \"33333333\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"carlos_ramirez@gmail.com\",\r\n    \"password\": \"GreatPassword1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxakFWVmlWa2pYWnpvTFZnMW1WTU1DOUF6b3ZMVXBOVDNyMmZNaFBMX0ZrIn0.eyJleHAiOjE2NjY5MDQ3NTcsImlhdCI6MTY2NjkwNDQ1NywianRpIjoiMGI0YjUyMDItYmMwYS00Y2NjLTk4ZjItOWQwN2ZiOGFiOTIyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL3JlYWxtcy9kaG1vbmV5IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxYTVkNzI0LWZlMjAtNDZiYy1iYjczLTczNzI3NDRkMGZiYSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXItaW50ZXJubyIsInNlc3Npb25fc3RhdGUiOiIwZjM2YzEyMy04NWVjLTQwODctOGI1My1iMjBlNzA1MmQwZDgiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kaG1vbmV5IiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIwZjM2YzEyMy04NWVjLTQwODctOGI1My1iMjBlNzA1MmQwZDgiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiaGFuYTIzQGdtYWlsLmNvbSIsImVtYWlsIjoiaGFuYTIzQGdtYWlsLmNvbSJ9.i-9sjQ4JYjPdRS55Z_juT8Zk-DKdSyWP-1EUV0zfu6Jy0Gai5nG3IDzBPKX4Y5kUHKEHFn1G7SInM8FyrSjpOhxkcqFtnZ3lCnN0FK-_9Pjl3QGfvzMBdrJGJfvRIwfVNLlsrE4AS7o_JwC2GF7lduDTDnYYnLT1NV3Zmkb_27EgBcUco-cg4AiPJtPrEKJqV9HQo3eUBbVUCrpRpyC6xxkwf7rca7BOuWUE0zJXt1CLJ1dzifqhXW3U63QzZL63c-kEoA9aO86E__lkepaD19WhMoeoYWuD1orEDSOLbyx7cAWY2TjkfZgf-atWOiBECScFcKGBT5iT90YKYb1q_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"hana23@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/auth/resetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"resetPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxakFWVmlWa2pYWnpvTFZnMW1WTU1DOUF6b3ZMVXBOVDNyMmZNaFBMX0ZrIn0.eyJleHAiOjE2NjcxODA1NjcsImlhdCI6MTY2NzE3Njk2NywianRpIjoiNzk1ZjFmZGQtYjA1My00ZmY4LWJhZWMtZTRkZDMzNzU2Yzg4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL3JlYWxtcy9kaG1vbmV5IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxYTVkNzI0LWZlMjAtNDZiYy1iYjczLTczNzI3NDRkMGZiYSIsInR5cCI6IkJlYXJlciIsImF6cCI6InVzZXItaW50ZXJubyIsInNlc3Npb25fc3RhdGUiOiIyNDY2YWU5Ny02ZjJiLTQ1MjItYTAzNi1hZWFkNzI2ZThjYjAiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kaG1vbmV5IiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyNDY2YWU5Ny02ZjJiLTQ1MjItYTAzNi1hZWFkNzI2ZThjYjAiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiaGFuYTIzQGdtYWlsLmNvbSIsImVtYWlsIjoiaGFuYTIzQGdtYWlsLmNvbSJ9.OoxBq0XHDwuUY2jiZPhqMIwx-hdMT9dTaAgv9SB02a07tOB83UksY0FknWv4julB1sz83eMifgJ0Xm2iYGLSi1XUO6jzqOIiIBVFvZYUY2tJWgKhpQr87_pLDAD0xxuBs2RpsQrrRZlyt9oeT_m-cH4HzZwettKeItU6cPockwbjbv1r4mxmvXrP8ebktQtM3Aelzpm-hbbCnpnYetDYWjRIBDVqhAGJeyoY4624mOVBND_Zs2ucxS8DHSWHsWCJTtQ_hcSLiNfKliyQ6ryl9dxIFrX3OBGsp3aDebMrJiDDeJaHPSSyL9c21YbPwERQpJYkkkCXHw60HFRSaeQ57Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/auth/validate-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"validate-token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "ecde32d2-c11c-44fe-b7f9-d1ad64878a35",
+		"name": "DH Money - Transactions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16607330"
+	},
+	"item": [
+		{
+			"name": "Transaction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100.00,\r\n    \"dated\": \"2022-10-21\",\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"destination\": \"1903919143693433487767\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/transactions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100.00,\r\n    \"dated\": \"2022-10-21\",\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"destination\": \"1903919143693433487767\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/transactions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Latest Transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100.00,\r\n    \"dated\": \"2022-10-21\",\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"destination\": \"1903919143693433487767\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/transactions?account=1&latest=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "account",
+							"value": "1"
+						},
+						{
+							"key": "latest",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": 1,\r\n    \"amount\": 25.00,\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"origin\": \"8205649832989063353304\",\r\n    \"destination\": \"8832731629594725998336\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction Error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": 1,\r\n    \"description\": \"Transaction description example\",\r\n    \"type\": \"Send\",\r\n    \"origin\": \"8205649832989063353304\",\r\n    \"destination\": \"8832731629594725998336\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

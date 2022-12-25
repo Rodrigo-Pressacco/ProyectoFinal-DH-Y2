@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "7bbdb6d8-5ef5-4b99-be25-0a625bef2f4f",
+		"name": "DH Money - Cards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16607330"
+	},
+	"item": [
+		{
+			"name": "Card by ID by Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/cards/1/account/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"cards",
+						"1",
+						"account",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Cards by Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/cards/account/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"cards",
+						"account",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountId\": 3,\n    \"cardNumber\": \"3456789932547698\",\n    \"fullName\": \"Araceli Montoya\",\n    \"expirationDate\": \"07/24\",\n    \"securityCode\": 999\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/cards",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Card by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/cards/1/account/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"cards",
+						"1",
+						"account",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
